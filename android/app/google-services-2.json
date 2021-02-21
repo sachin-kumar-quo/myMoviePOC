@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "691268311062",
+    "project_id": "mymoviepoc",
+    "storage_bucket": "mymoviepoc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691268311062:android:0b994b1bc1cdac0829fd37",
+        "android_client_info": {
+          "package_name": "com.mymoviepoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691268311062-t13up36g8fbkdhlgv55m35v17ghm4ved.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh5VXIqeC4AIO7UTl3_n1evACjRo0-2j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691268311062-t13up36g8fbkdhlgv55m35v17ghm4ved.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "691268311062-at5dd6evrnnar4qga5jrmbillip723ht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "myMoviePOC"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
