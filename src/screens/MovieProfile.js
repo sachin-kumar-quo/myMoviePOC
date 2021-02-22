@@ -58,7 +58,7 @@ export default MovieProfile = ({ route, navigation }) => {
                                 <Text style={{flex: 1, flexShrink:1,fontSize:20,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.name}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
-                        <Text style={{fontSize:20}}>{movie.release_date}</Text>
+                        <Text style={{fontSize:20,color:'white'}}>{movie.release_date}</Text>
                         <FlatList
                             horizontal={true}
                             data={movie.genres}
@@ -66,7 +66,7 @@ export default MovieProfile = ({ route, navigation }) => {
                                 <Text style={{fontSize:15,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.id.toString()}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
-                        <Text style={{fontSize:20, fontWeight:'bold'}}>{movie.vote_count}</Text>
+                        <Text style={{fontSize:20, fontWeight:'bold',color:'orange'}}>{movie.vote_count}</Text>
                     </View>
                 </View>
                 <View>

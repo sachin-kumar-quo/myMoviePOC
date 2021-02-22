@@ -1,8 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { Text, ScrollView, StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Card from '../components/Card';
 
@@ -71,7 +70,7 @@ export default Home = ({navigation}) =>{
                 </View>
                 <View style={styles.section}>
                     <View>
-                        <Text style={{fontSize:30,color:'white',fontWeight:'bold'}}> Popular <Icon name="account-star" size={40} /></Text>
+                        <Text style={{fontSize:30,color:'white',fontWeight:'bold'}}> Popular <Icon name="star-of-david" size={40} /></Text>
                         <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'Popular',section:'popular'})}><Text style={{textAlign:'right',color:'yellow'}}>See More...</Text></TouchableOpacity>
                     </View>
                     <FlatList
@@ -82,7 +81,7 @@ export default Home = ({navigation}) =>{
                 </View>
                 <View style={styles.section}>
                     <View>
-                        <Text style={{fontSize:30,color:'white',fontWeight:'bold'}}> UpComing <Icon name="account-star" size={40} /></Text>
+                        <Text style={{fontSize:30,color:'white',fontWeight:'bold'}}> UpComing <Icon name="hourglass-start" size={30} /></Text>
                         <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'UpComing',section:'upcoming'})}><Text style={{textAlign:'right',color:'yellow'}}>See More...</Text></TouchableOpacity>
                     </View>
                     <FlatList
