@@ -48,7 +48,7 @@ export default Home = ({navigation}) =>{
             .catch(err=>alert(err))
     }
 
-    const renderListItem = (movie,Heading) => {
+    const renderListItem = (movie) => {
         return (
             <TouchableOpacity onPress={() => navigation.navigate('MovieProfile', { movieId: movie.item.id})}>
                 <Card coverPhoto={movie.item.poster_path} releaseDate={movie.item.release_date} movieName={movie.item.original_title}/>
@@ -79,7 +79,7 @@ export default Home = ({navigation}) =>{
                     <FlatList
                         horizontal={true}
                         data={popularMovies}
-                        renderItem={(item)=>renderListItem(item,PopularHeading)}
+                        renderItem={renderListItem}
                         keyExtractor={item => item.id.toString()} />
                 </View>
                 <View style={styles.section}>
@@ -90,7 +90,7 @@ export default Home = ({navigation}) =>{
                     <FlatList
                         horizontal={true}
                         data={upComingMovies}
-                        renderItem={(item)=>renderListItem(item,PopularHeading)}
+                        renderItem={renderListItem}
                         keyExtractor={item => item.id.toString()} />
                 </View>
             </ScrollView>
