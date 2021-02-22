@@ -29,7 +29,7 @@ export default MovieProfile = ({ route, navigation }) => {
                 </View>
                 <View style={styles.body}>
                     <Image
-                        style={{height:350,flex:1}}
+                        style={{height:undefined,width:"100%",aspectRatio:2/3 ,flex:1}}
                         source={{
                             uri:`https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                         }} />
@@ -39,7 +39,7 @@ export default MovieProfile = ({ route, navigation }) => {
                             horizontal={true}
                             data={movie.production_companies}
                             renderItem={({ item }) =>
-                                <Text style={{fontWeight:'bold', fontSize:15}}>{item.name}</Text>}
+                                <Text style={{fontWeight:'bold', fontSize:20,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.id.toString()}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
                         <FlatList
@@ -47,7 +47,7 @@ export default MovieProfile = ({ route, navigation }) => {
                             horizontal={true}
                             data={movie.production_countries}
                             renderItem={({ item }) =>
-                                <Text style={{fontSize:15}}>{item.name}</Text>}
+                                <Text style={{fontSize:15,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.name}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
                         <FlatList
@@ -55,7 +55,7 @@ export default MovieProfile = ({ route, navigation }) => {
                             horizontal={true}
                             data={movie.spoken_languages}
                             renderItem={({ item }) =>
-                                <Text style={{flex: 1, flexShrink:1,fontSize:20}}>{item.name}</Text>}
+                                <Text style={{flex: 1, flexShrink:1,fontSize:20,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.name}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
                         <Text style={{fontSize:20}}>{movie.release_date}</Text>
@@ -63,14 +63,14 @@ export default MovieProfile = ({ route, navigation }) => {
                             horizontal={true}
                             data={movie.genres}
                             renderItem={({ item }) =>
-                                <Text style={{fontSize:15}}>{item.name}</Text>}
+                                <Text style={{fontSize:15,color:'white'}}>{item.name}</Text>}
                             keyExtractor={(item) => item.id.toString()}
                             ItemSeparatorComponent={() => <Text>||</Text>} />
                         <Text style={{fontSize:20, fontWeight:'bold'}}>{movie.vote_count}</Text>
                     </View>
                 </View>
                 <View>
-                    <Text style={{fontSize:30}}>{movie.overview}</Text>
+                    <Text style={styles.overview}>{movie.overview}</Text>
                 </View>
             </ScrollView>
         </LinearGradient>    
@@ -79,18 +79,21 @@ export default MovieProfile = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     overview: {
-        
+        fontSize: 20,
+        color:'white'
     },
     title: {
         fontSize: 35,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        color:'white'
     },
     titleView: {
         marginTop: 30,
         marginBottom:15
     },
     body: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        color:'white'
     }
 })

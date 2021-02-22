@@ -5,8 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 import Card from '../components/Card';
-import TopRatedHeading from '../components/TopRatedHeading';
-import PopularHeading from '../components/PopularHeading';
 
 export default Home = ({navigation}) =>{
     const [topRatedMovies, setTopRatedMovies] = useState([]);
