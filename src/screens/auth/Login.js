@@ -1,23 +1,50 @@
 import React,{useState} from "react";
 import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
+import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default Login = ({navigation,onClick})=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const validate =() =>{
-        if(email===""){
+    const validate = () => {
+        const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const passReg = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+        if(!emailReg.test(email)){
             alert("Enter valid Email Address");
+            return false;
         }
-        if(password===""){
-            alert("Enter valid Password")
+        if(!passReg.test(password)){
+            alert("Enter valid Password");
+            return false;
+        }
+        return true;
+    }
+    const storeData = async (value) => {
+        try {
+            await AsyncStorage.setItem('@signed_user', value)
+        } catch (e) {
+            console.log(e);
         }
     }
 
     const logIn = () =>{
-        validate();
-        onClick();
+        if (validate()) {
+            auth()
+                .signInWithEmailAndPassword(email,password)
+                .then(() => {
+                    storeData(email);
+                    onClick();
+                })
+                .catch(error => {
+                    if (error.code === 'auth/invalid-email') {
+                    alert('That email address is invalid!');
+                    }
+                    alert(error);
+                });
+        }
+        
     }
 
 
@@ -27,7 +54,7 @@ export default Login = ({navigation,onClick})=>{
             colors={['#cc2b5e','#753a88']}>
             <View style={styles.formContainer}>
                 <Text style={styles.heading}>LOGIN</Text>
-                <View >
+                <View style={{borderTopColor:'white',borderTopWidth:1}}>
                     <Text style={{fontSize:20,color:'white'}}>Username/Email: </Text>
                     <TextInput 
                         style={styles.input}
@@ -67,7 +94,8 @@ const styles = StyleSheet.create({
         fontSize:30,
         fontWeight:'bold',
         alignSelf: 'center',
-        color:'white'
+        color: 'white',
+        paddingVertical:10
     },
     loginButton:{
         backgroundColor:'orange',

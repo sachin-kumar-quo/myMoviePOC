@@ -51,7 +51,6 @@ export default Search = ({navigation}) => {
             style={{flex:1}}
             colors={['#cc2b5e','#753a88']}>
             <TextInput style={styles.searchInput} onChangeText={handleInputChange} value={searchInput}/>
-            <Text style={{ textAlign: 'center', marginVertical: 10, fontSize: 20,color:'white' }}>Search</Text>
             <FlatList
                 data={result}
                 keyExtractor={item => item.id.toString()}
