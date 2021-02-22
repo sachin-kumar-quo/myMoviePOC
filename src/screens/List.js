@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { useEffect } from 'react/cjs/react.development';
 
 import Card from '../components/Card'
@@ -40,8 +41,9 @@ export default List = ({route,navigation}) => {
     }
 
     return (
-        <View>
-            <Text style={{fontSize:20,textAlign:'center'}}>{route.params.name}</Text>
+        <LinearGradient
+            colors={['#cc2b5e','#753a88']}>
+            <Text style={{fontSize:50,textAlign:'center',color:'white',fontWeight:'bold'}}>{route.params.name}</Text>
             <FlatList
                 data={movies}
                 numColumns={2}
@@ -51,6 +53,6 @@ export default List = ({route,navigation}) => {
                 keyExtractor={item => item.id}
                 extraData={movies}
                 />
-        </View>
+        </LinearGradient>
     )
 }

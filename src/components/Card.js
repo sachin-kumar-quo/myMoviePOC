@@ -10,10 +10,10 @@ export default Card = ({ coverPhoto, releaseDate, movieName }) => {
                 source={{
                     uri:`https://image.tmdb.org/t/p/w500/${coverPhoto}`
                 }}/>
-            <Text style={{textAlign:'center'}}>
+            <Text style={{textAlign:'center',color:'white'}}>
                 {movieName}
             </Text>
-            <Text style={{textAlign:'center'}}>
+            <Text style={{textAlign:'center',color:'white'}}>
                 {releaseDate}
             </Text>
         </View>

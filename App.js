@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import {Text, View, StyleSheet } from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer,DrawerActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -21,7 +21,7 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default App = () => {
+export default App = ({navigation}) => {
   const [signedIn, setSignedIn] = useState(false);
 
   const toggleSignIn = () => {
@@ -62,8 +62,8 @@ export default App = () => {
             <Stack.Screen 
               name="Main" 
               children={MainDrawer} 
-              options={{
-                headerLeft:()=>null,
+              options={({ navigation })=>({
+                headerLeft:()=><TouchableOpacity onPress={()=>navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name="ios-menu" size={45} color='white' /></TouchableOpacity>,
                 title: 'MyMoviePOC',
                 headerStyle: {
                   backgroundColor: '#a31f71',
@@ -73,13 +73,27 @@ export default App = () => {
                   fontWeight: 'bold',
                   fontSize:30
                 }
-              }}/>
+              })}/>
             <Stack.Screen 
               name="MovieProfile" 
-              component={MovieProfile}/>
+              component={MovieProfile}
+              options={{
+                headerStyle:{
+                  backgroundColor:'#a31f71'
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                  fontSize:30
+                }
+              }}/>
             <Stack.Screen
               name="MovieList"
-              component={List}/>
+              component={List}
+              options={{
+                headerStyle:{
+                  backgroundColor:'#a31f71'
+                }
+              }}/>
           </>}
       
       </Stack.Navigator>

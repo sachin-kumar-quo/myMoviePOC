@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {Text, View, ScrollView, StyleSheet, Image, FlatList} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default MovieProfile = ({ route, navigation }) => {
     const [movie, setMovie] = useState("");
@@ -18,57 +19,61 @@ export default MovieProfile = ({ route, navigation }) => {
             .catch(err=>alert(err))
     }
 
-    return(
-        <ScrollView contentContainerStyle={{marginHorizontal:10}}>
-            <View style={styles.titleView}>
-                <Text style={styles.title}>{movie.original_title}</Text>
-            </View>
-            <View style={styles.body}>
-                <Image
-                    style={{height:350,flex:1}}
-                    source={{
-                        uri:`https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                    }} />
-                <View style={{flex:1,margin:5}}>
-                    <FlatList
-                        contentContainerStyle={{flexDirection:'column'}}
-                        horizontal={true}
-                        data={movie.production_companies}
-                        renderItem={({ item }) =>
-                            <Text style={{fontWeight:'bold', fontSize:15}}>{item.name}</Text>}
-                        keyExtractor={(item) => item.id.toString()}
-                        ItemSeparatorComponent={() => <Text>||</Text>} />
-                    <FlatList
-                        contentContainerStyle={{flexDirection:'column'}}
-                        horizontal={true}
-                        data={movie.production_countries}
-                        renderItem={({ item }) =>
-                            <Text style={{fontSize:15}}>{item.name}</Text>}
-                        keyExtractor={(item) => item.name}
-                        ItemSeparatorComponent={() => <Text>||</Text>} />
-                    <FlatList
-                        contentContainerStyle={{flexDirection:'column'}}
-                        horizontal={true}
-                        data={movie.spoken_languages}
-                        renderItem={({ item }) =>
-                            <Text style={{flex: 1, flexShrink:1,fontSize:20}}>{item.name}</Text>}
-                        keyExtractor={(item) => item.name}
-                        ItemSeparatorComponent={() => <Text>||</Text>} />
-                    <Text style={{fontSize:20}}>{movie.release_date}</Text>
-                    <FlatList
-                        horizontal={true}
-                        data={movie.genres}
-                        renderItem={({ item }) =>
-                            <Text style={{fontSize:15}}>{item.name}</Text>}
-                        keyExtractor={(item) => item.id.toString()}
-                        ItemSeparatorComponent={() => <Text>||</Text>} />
-                    <Text style={{fontSize:20, fontWeight:'bold'}}>{movie.vote_count}</Text>
+    return (
+        <LinearGradient
+            style={{flex:1}}
+            colors={['#cc2b5e','#753a88']}>
+            <ScrollView contentContainerStyle={{marginHorizontal:10}}>
+                <View style={styles.titleView}>
+                    <Text style={styles.title}>{movie.original_title}</Text>
                 </View>
-            </View>
-            <View>
-                <Text style={{fontSize:30}}>{movie.overview}</Text>
-            </View>
-        </ScrollView>
+                <View style={styles.body}>
+                    <Image
+                        style={{height:350,flex:1}}
+                        source={{
+                            uri:`https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                        }} />
+                    <View style={{flex:1,margin:5}}>
+                        <FlatList
+                            contentContainerStyle={{flexDirection:'column'}}
+                            horizontal={true}
+                            data={movie.production_companies}
+                            renderItem={({ item }) =>
+                                <Text style={{fontWeight:'bold', fontSize:15}}>{item.name}</Text>}
+                            keyExtractor={(item) => item.id.toString()}
+                            ItemSeparatorComponent={() => <Text>||</Text>} />
+                        <FlatList
+                            contentContainerStyle={{flexDirection:'column'}}
+                            horizontal={true}
+                            data={movie.production_countries}
+                            renderItem={({ item }) =>
+                                <Text style={{fontSize:15}}>{item.name}</Text>}
+                            keyExtractor={(item) => item.name}
+                            ItemSeparatorComponent={() => <Text>||</Text>} />
+                        <FlatList
+                            contentContainerStyle={{flexDirection:'column'}}
+                            horizontal={true}
+                            data={movie.spoken_languages}
+                            renderItem={({ item }) =>
+                                <Text style={{flex: 1, flexShrink:1,fontSize:20}}>{item.name}</Text>}
+                            keyExtractor={(item) => item.name}
+                            ItemSeparatorComponent={() => <Text>||</Text>} />
+                        <Text style={{fontSize:20}}>{movie.release_date}</Text>
+                        <FlatList
+                            horizontal={true}
+                            data={movie.genres}
+                            renderItem={({ item }) =>
+                                <Text style={{fontSize:15}}>{item.name}</Text>}
+                            keyExtractor={(item) => item.id.toString()}
+                            ItemSeparatorComponent={() => <Text>||</Text>} />
+                        <Text style={{fontSize:20, fontWeight:'bold'}}>{movie.vote_count}</Text>
+                    </View>
+                </View>
+                <View>
+                    <Text style={{fontSize:30}}>{movie.overview}</Text>
+                </View>
+            </ScrollView>
+        </LinearGradient>    
     )
 }
 
