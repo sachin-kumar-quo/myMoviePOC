@@ -10,7 +10,6 @@ export default SearchCard = ({movie,searchPressed}) => {
         </View>
     )
 }
-
 const styles = StyleSheet.create({
     movieName: {
         fontSize: 30,

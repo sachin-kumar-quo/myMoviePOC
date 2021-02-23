@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react';
 import { Text, ScrollView, StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import Card from '../../components/Card';
 
 export default Home = ({navigation}) =>{
@@ -44,7 +43,6 @@ export default Home = ({navigation}) =>{
             })
             .catch(err=>alert(err))
     }
-
     const renderListItem = (movie) => {
         return (
             <TouchableOpacity onPress={() => navigation.navigate('MovieProfile', { movieId: movie.item.id})}>
@@ -52,7 +50,6 @@ export default Home = ({navigation}) =>{
             </TouchableOpacity>
         )
     }
-
     return (
         <LinearGradient
             colors={['#cc2b5e','#753a88']}>

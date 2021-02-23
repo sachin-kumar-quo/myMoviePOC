@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from '../screens/auth/Login';
 import SignUp from '../screens/auth/SignUp';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { beginAsyncEvent } from 'react-native/Libraries/Performance/Systrace';
 
 const Tab = createBottomTabNavigator();
 

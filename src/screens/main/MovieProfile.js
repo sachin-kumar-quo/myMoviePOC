@@ -8,8 +8,6 @@ export default MovieProfile = ({ route, navigation }) => {
     useEffect(() => {
         getMovie();
     },[])
-
-
     const getMovie = async()=>{
         await fetch(`https://api.themoviedb.org/3/movie/${route.params.movieId}?api_key=8ca2abb7154c8c81ef7cb403c11eec32&language=en-US`)
             .then(response=>response.json())
@@ -18,7 +16,6 @@ export default MovieProfile = ({ route, navigation }) => {
             })
             .catch(err=>alert(err))
     }
-
     return (
         <LinearGradient
             style={{flex:1}}
@@ -76,7 +73,6 @@ export default MovieProfile = ({ route, navigation }) => {
         </LinearGradient>    
     )
 }
-
 const styles = StyleSheet.create({
     overview: {
         fontSize: 20,

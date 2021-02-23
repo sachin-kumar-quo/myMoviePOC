@@ -12,7 +12,6 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.oblador.vectoricons.VectorIconsPackage;  
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -31,8 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           packages.add(new LinearGradientPackage());
-          packages.add(new VectorIconsPackage());
-          packages.add(new RNGestureHandlerPackage());
+          // packages.add(new VectorIconsPackage());
+          // packages.add(new RNGestureHandlerPackage());
           return packages;
         }
 

@@ -8,7 +8,7 @@ export default Login = ({navigation,onClick})=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const validate = () => {
+    const isValid = () => {
         const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const passReg = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
         if(!emailReg.test(email)){
@@ -28,9 +28,8 @@ export default Login = ({navigation,onClick})=>{
             console.log(e);
         }
     }
-
     const logIn = () =>{
-        if (validate()) {
+        if (isValid()) {
             auth()
                 .signInWithEmailAndPassword(email,password)
                 .then(() => {
@@ -39,15 +38,11 @@ export default Login = ({navigation,onClick})=>{
                 })
                 .catch(error => {
                     if (error.code === 'auth/invalid-email') {
-                    alert('That email address is invalid!');
+                        alert('That email address is invalid!');
                     }
-                    alert(error);
                 });
         }
-        
     }
-
-
     return(
         <LinearGradient
             style={styles.loginView}
@@ -59,13 +54,15 @@ export default Login = ({navigation,onClick})=>{
                     <TextInput 
                         style={styles.input}
                         placeholder="e.g. abc@def.com"
-                        onChangeText={text=>setEmail(text)}/>
+                        onChangeText={text => setEmail(text)}
+                        placeholderTextColor="#000"/>
                     <Text style={{fontSize:20,color:"white"}}>Password: </Text>
                     <TextInput 
                         style={styles.input}
                         placeholder="password"
                         secureTextEntry={true}
-                        onChangeText={text=>setPassword(text)}/>
+                        onChangeText={text => setPassword(text)}
+                        placeholderTextColor="#000"/>
                     <TouchableOpacity onPress={logIn} style={styles.loginButton}><Text style={{alignSelf:'center',fontSize:25}}>LOGIN</Text></TouchableOpacity>
                     <Text style={{color:'white'}}>Forget Password</Text>
                 </View>
@@ -74,9 +71,6 @@ export default Login = ({navigation,onClick})=>{
         </LinearGradient>
     )
 }
-
-
-
 const styles = StyleSheet.create({
     loginView:{
         flex:1,

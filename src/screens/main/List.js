@@ -39,7 +39,6 @@ export default List = ({route,navigation}) => {
             </TouchableOpacity>
         )
     }
-
     return (
         <LinearGradient
             colors={['#cc2b5e','#753a88']}>

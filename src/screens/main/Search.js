@@ -1,6 +1,5 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, View, StyleSheet,FlatList,TouchableOpacity } from 'react-native';
+import { TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchCard from '../../components/SearchCard'
 
@@ -12,7 +11,6 @@ export default Search = ({navigation}) => {
     useEffect(() => {
         getSearchResults(searchInput);
     },[searchInput])
-
     const getSearchResults = async (query) => {
         await fetch(`https://api.themoviedb.org/3/search/movie?api_key=8ca2abb7154c8c81ef7cb403c11eec32&language=en-US&query=${query}&page=1&include_adult=false`)
             .then(response=>response.json())
@@ -21,12 +19,10 @@ export default Search = ({navigation}) => {
             })
             .catch(err=>alert(err))
     }
-
     const handleInputChange = (input) => {
         setSearchPressed(false);
         setSearchInput(input);
     }
-
     const searchButtonPressed = (input,id) => {
         if (!searchPressed) {
             setSearchPressed(true);
@@ -36,7 +32,6 @@ export default Search = ({navigation}) => {
         }
         
     }
-
     const renderSearchResults = (movie) => {
         return (
             <TouchableOpacity onPress={()=>searchButtonPressed(movie.item.original_title,movie.item.id)}>
@@ -44,12 +39,16 @@ export default Search = ({navigation}) => {
             </TouchableOpacity>
         )
     }
-
     return(
         <LinearGradient
             style={{flex:1}}
             colors={['#cc2b5e','#753a88']}>
-            <TextInput style={styles.searchInput} onChangeText={handleInputChange} value={searchInput}/>
+            <TextInput
+                style={styles.searchInput}
+                onChangeText={handleInputChange}
+                value={searchInput}
+                placeholder="Enter Movie name"
+                placeholderTextColor="#ffff60"/>
             <FlatList
                 data={result}
                 keyExtractor={item => item.id.toString()}

@@ -19,6 +19,14 @@ export default Profile = ({ onClick }) => {
             alert(e);
         }
     }
+    const signOut = async() => {
+        try {
+            await AsyncStorage.removeItem('@signed_user');
+            onClick();
+        } catch (error) {
+            alert(error);
+        }
+    }
     return(
         <LinearGradient
             style={styles.profileView}
@@ -27,13 +35,12 @@ export default Profile = ({ onClick }) => {
                 color: 'white', fontSize: 30, textAlign: 'center'}}>
                 Welcome {signedUser}
             </Text>
-            <TouchableOpacity onPress={onClick}>
+            <TouchableOpacity onPress={signOut}>
                 <Text style={{color:'yellow',textAlign:'center',fontSize:20}}>SignOut</Text>
             </TouchableOpacity>
         </LinearGradient>
     )
 }
-
 const styles = StyleSheet.create({
     profileView: {
         flex: 1

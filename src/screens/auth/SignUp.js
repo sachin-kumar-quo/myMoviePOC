@@ -8,7 +8,6 @@ export default SignUp = ({onClick})=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-
     const validate = () =>{
         const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const passReg = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
@@ -29,7 +28,6 @@ export default SignUp = ({onClick})=>{
             console.log(e);
         }
     }
-
     const signUp = () =>{
         if (validate()) {
             console.log(email, password);
@@ -42,15 +40,13 @@ export default SignUp = ({onClick})=>{
                 })
                 .catch(error => {
                     if (error.code === 'auth/email-already-in-use') {
-                    alert('That email address is already in use!');
+                        alert('That email address is already in use!');
                     }
                     if (error.code === 'auth/invalid-email') {
-                    alert('That email address is invalid!');
+                        alert('That email address is invalid!');
                     }
-                    alert(error);
                 });
         }
-        
     }
 
     return(
@@ -79,8 +75,6 @@ export default SignUp = ({onClick})=>{
         </LinearGradient>
     )
 }
-
-
 const styles = StyleSheet.create({
     signUpView:{
         flex:1,
