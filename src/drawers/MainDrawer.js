@@ -5,9 +5,9 @@ import Search from '../screens/main/Search';
 import Profile from '../screens/main/Profile';
 const Drawer = createDrawerNavigator();
 
-export default MainDrawer = ({onClick}) =>(
+export default MainDrawer = ({toggleSignIn}) =>(
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" children={()=><HomeTab onClick={onClick} />}/>
+      <Drawer.Screen name="Home" children={()=><HomeTab toggleSignIn={toggleSignIn} />}/>
       <Drawer.Screen name="Search" component={Search}/>
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>

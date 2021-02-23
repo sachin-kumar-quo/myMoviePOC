@@ -3,7 +3,7 @@ import {View, Text,TouchableOpacity, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './ProfileStyles';
-export default Profile = ({ onClick }) => {
+export default Profile = ({ toggleSignIn }) => {
     const [signedUser, setSignedUser] = useState("");
     useEffect(() => {
         getData();
@@ -22,7 +22,7 @@ export default Profile = ({ onClick }) => {
     const signOutUser = async() => {
         try {
             await AsyncStorage.removeItem('@signed_user');
-            onClick();
+            toggleSignIn();
         } catch (error) {
             alert(error);
         }

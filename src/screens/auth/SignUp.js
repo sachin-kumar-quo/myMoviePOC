@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './SignUpStyles';
 
-export default SignUp = ({onClick})=>{
+export default SignUp = ({toggleSignIn})=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -37,7 +37,7 @@ export default SignUp = ({onClick})=>{
                 .then(() => {
                     console.log(email, password);
                     storeData(email);
-                    onClick();
+                    toggleSignIn();
                 })
                 .catch(error => {
                     if (error.code === 'auth/email-already-in-use') {

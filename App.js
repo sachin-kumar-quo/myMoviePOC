@@ -33,13 +33,13 @@ export default App = ({navigation}) => {
         <Stack.Navigator >
             {!signedIn && <Stack.Screen 
                 name="Auth" 
-                children={() => <AuthTab onClick={toggleSignIn}/>} 
+                children={() => <AuthTab toggleSignIn={toggleSignIn}/>} 
                 options={{headerShown:false}}/>}
             {signedIn && 
                 <>
                     <Stack.Screen 
                         name="Main" 
-                        children={()=><MainDrawer onClick={toggleSignIn} />} 
+                        children={()=><MainDrawer toggleSignIn={toggleSignIn} />} 
                         options={({ navigation })=>({
                             headerLeft: () => <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name="ios-menu" size={45} color='white' /></TouchableOpacity>,
                             headerRight: () => <Image style={{height:40,width:40,marginRight:10,marginBottom:5}} source={require('./src/images/quovantisIcon.png')}/>,
