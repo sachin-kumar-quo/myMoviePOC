@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import {View, Text,TouchableOpacity, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import styles from './ProfileStyles';
 export default Profile = ({ onClick }) => {
     const [signedUser, setSignedUser] = useState("");
     useEffect(() => {
@@ -19,7 +19,7 @@ export default Profile = ({ onClick }) => {
             alert(e);
         }
     }
-    const signOut = async() => {
+    const signOutUser = async() => {
         try {
             await AsyncStorage.removeItem('@signed_user');
             onClick();
@@ -29,20 +29,14 @@ export default Profile = ({ onClick }) => {
     }
     return(
         <LinearGradient
-            style={styles.profileView}
+            style={styles.gradient}
             colors={['#cc2b5e', '#753a88']}>
-            <Text style={{
-                color: 'white', fontSize: 30, textAlign: 'center'}}>
+            <Text style={styles.welcomeNote}>
                 Welcome {signedUser}
             </Text>
-            <TouchableOpacity onPress={signOut}>
-                <Text style={{color:'yellow',textAlign:'center',fontSize:20}}>SignOut</Text>
+            <TouchableOpacity onPress={signOutUser}>
+                <Text style={styles.signOut}>SignOut</Text>
             </TouchableOpacity>
         </LinearGradient>
     )
 }
-const styles = StyleSheet.create({
-    profileView: {
-        flex: 1
-    }
-})

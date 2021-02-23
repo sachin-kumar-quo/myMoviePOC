@@ -1,8 +1,7 @@
-import React,{useState} from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { Text, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { useEffect } from 'react/cjs/react.development';
-
+import styles from './ListStyles';
 import Card from '../../components/Card'
 
 export default List = ({route,navigation}) => {
@@ -41,8 +40,9 @@ export default List = ({route,navigation}) => {
     }
     return (
         <LinearGradient
+            style={styles.gradient}
             colors={['#cc2b5e','#753a88']}>
-            <Text style={{fontSize:50,textAlign:'center',color:'white',fontWeight:'bold'}}>{route.params.name}</Text>
+            <Text style={styles.heading}>{route.params.name}</Text>
             <FlatList
                 data={movies}
                 numColumns={2}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchCard from '../../components/SearchCard'
+import styles from './SearchStyles';
 
 export default Search = ({navigation}) => {
     const [result, setResult] = useState([]);
@@ -41,7 +42,7 @@ export default Search = ({navigation}) => {
     }
     return(
         <LinearGradient
-            style={{flex:1}}
+            style={styles.gradient}
             colors={['#cc2b5e','#753a88']}>
             <TextInput
                 style={styles.searchInput}
@@ -56,14 +57,3 @@ export default Search = ({navigation}) => {
         </LinearGradient>
     )
 }
-
-const styles = StyleSheet.create({
-    searchInput: {
-        borderColor: 'white',
-        borderRadius: 1,
-        borderWidth: 1,
-        marginTop: 20,
-        marginHorizontal:20,
-        height:40
-    }
-})

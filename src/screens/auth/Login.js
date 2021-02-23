@@ -3,6 +3,7 @@ import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import LinearGradient from "react-native-linear-gradient";
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './LoginStyles';
 
 export default Login = ({navigation,onClick})=>{
     const [email,setEmail] = useState("");
@@ -49,14 +50,14 @@ export default Login = ({navigation,onClick})=>{
             colors={['#cc2b5e','#753a88']}>
             <View style={styles.formContainer}>
                 <Text style={styles.heading}>LOGIN</Text>
-                <View style={{borderTopColor:'white',borderTopWidth:1}}>
-                    <Text style={{fontSize:20,color:'white'}}>Username/Email: </Text>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Username/Email: </Text>
                     <TextInput 
                         style={styles.input}
                         placeholder="e.g. abc@def.com"
                         onChangeText={text => setEmail(text)}
                         placeholderTextColor="#000"/>
-                    <Text style={{fontSize:20,color:"white"}}>Password: </Text>
+                    <Text style={styles.label}>Password: </Text>
                     <TextInput 
                         style={styles.input}
                         placeholder="password"
@@ -71,36 +72,3 @@ export default Login = ({navigation,onClick})=>{
         </LinearGradient>
     )
 }
-const styles = StyleSheet.create({
-    loginView:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    formContainer:{
-        borderWidth:1,
-        borderRadius:4,
-        borderColor:'violet',
-        width:"70%",
-        padding:5
-    },
-    heading:{
-        fontSize:30,
-        fontWeight:'bold',
-        alignSelf: 'center',
-        color: 'white',
-        paddingVertical:10
-    },
-    loginButton:{
-        backgroundColor:'orange',
-        margin:4,
-        padding:10
-    },
-    input:{
-        borderColor:'#ffdedb',
-        borderRadius:2,
-        borderWidth:1,
-        height:30,
-        marginVertical: 5
-    }
-})

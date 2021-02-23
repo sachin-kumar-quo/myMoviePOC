@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import styles from './SearchCardStyles';
 
 export default SearchCard = ({movie,searchPressed}) => {
     return (
@@ -10,23 +11,3 @@ export default SearchCard = ({movie,searchPressed}) => {
         </View>
     )
 }
-const styles = StyleSheet.create({
-    movieName: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: 'yellow',
-        opacity:1
-    },
-    releaseYear: {
-        fontSize: 20,
-        color: 'white',
-        opacity:2
-    },
-    cardBody: {
-        marginHorizontal: 30,
-        backgroundColor: 'rgba(52, 52, 52, 0.3)',
-        paddingVertical: 10,
-        borderBottomColor: 'violet',
-        borderWidth:.3
-    }
-})
