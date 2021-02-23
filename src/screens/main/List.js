@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useEffect } from 'react/cjs/react.development';
 
-import Card from '../components/Card'
+import Card from '../../components/Card'
 
 export default List = ({route,navigation}) => {
     const [movies, setMovies] = useState([]);

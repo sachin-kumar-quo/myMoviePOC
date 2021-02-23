@@ -1,9 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, TextInput, View, StyleSheet,FlatList,TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { useEffect } from 'react/cjs/react.development';
-import SearchCard from '../components/SearchCard'
+import SearchCard from '../../components/SearchCard'
 
 export default Search = ({navigation}) => {
     const [result, setResult] = useState([]);

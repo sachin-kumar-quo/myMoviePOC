@@ -1,21 +1,18 @@
-import React,{useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-
+import React,{useEffect, useState} from 'react';
+import {Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer,DrawerActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import LinearGradient from 'react-native-linear-gradient';
 
-import Login from './src/screens/auth/Login'
-import SignUp from './src/screens/auth/SignUp'
-import Home from './src/screens/Home';
-import Profile from './src/screens/Profile';
-import Search from './src/screens/Search';
-import MovieProfile from './src/screens/MovieProfile';
-import List from './src/screens/List'
+import Home from './src/screens/main/Home';
+import Profile from './src/screens/main/Profile';
+import Search from './src/screens/main/Search';
+import MovieProfile from './src/screens/main/MovieProfile';
+import List from './src/screens/main/List'
 import Icon from 'react-native-vector-icons/Ionicons';
-import AuthTab from './src/screens/auth/AuthTab';
+import AuthTab from './src/tabs/AuthTab';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,7 +20,17 @@ const Stack = createStackNavigator();
 
 export default App = ({navigation}) => {
   const [signedIn, setSignedIn] = useState(false);
+  
+  useEffect(() => {
+    isSignedIn();
+  },[signedIn])
 
+  const isSignedIn = async () => {
+    const value = await AsyncStorage.getItem('@signed_user');
+    if (value !== null) {
+      setSignedIn(true);
+    }
+  }
   const toggleSignIn = () => {
     setSignedIn(!signedIn);
   }
@@ -63,7 +70,8 @@ export default App = ({navigation}) => {
               name="Main" 
               children={MainDrawer} 
               options={({ navigation })=>({
-                headerLeft:()=><TouchableOpacity onPress={()=>navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name="ios-menu" size={45} color='white' /></TouchableOpacity>,
+                headerLeft: () => <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name="ios-menu" size={45} color='white' /></TouchableOpacity>,
+                headerRight: ()=><Image />,
                 title: 'MyMoviePOC',
                 headerStyle: {
                   backgroundColor: '#a31f71',

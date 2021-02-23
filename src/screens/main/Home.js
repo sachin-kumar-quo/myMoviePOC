@@ -3,7 +3,7 @@ import { Text, ScrollView, StyleSheet, View, TouchableOpacity, FlatList } from '
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import Card from '../components/Card';
+import Card from '../../components/Card';
 
 export default Home = ({navigation}) =>{
     const [topRatedMovies, setTopRatedMovies] = useState([]);

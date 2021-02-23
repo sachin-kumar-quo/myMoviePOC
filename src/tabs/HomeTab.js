@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Tab = createBottomTabNavigator();
 
 
-const HomeTab = () =>{
+export default HomeTab = () =>{
   <Tab.Navigator
     tabBarOptions={{
       activeTintColor:'white',
