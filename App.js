@@ -26,6 +26,11 @@ export default App = ({navigation}) => {
         }
     }
     const toggleSignIn = () => {
+        if (signedIn) {
+            auth()
+                .signOut()
+                .then(() => console.log('User signed out!'));
+        }
         setSignedIn(!signedIn);
     }
   return(

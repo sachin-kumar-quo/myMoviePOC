@@ -21,7 +21,7 @@ export default SignUp = ({toggleSignIn})=>{
             return false;
         }
         if(!passReg.test(password)){
-            alert("Enter valid Password");
+            alert("Enter valid Password, password should contain 1 letter,1 special character,1 number and of length atleast 8");
             return false;
         }
         return true;
