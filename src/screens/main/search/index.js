@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { TextInput, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import SearchCard from '../../components/SearchCard'
-import styles from './SearchStyles';
+import SearchCard from '../../../components/searchcard'
+import Styles from './Styles';
 
 export default Search = ({navigation}) => {
     const [result, setResult] = useState([]);
@@ -42,10 +42,10 @@ export default Search = ({navigation}) => {
     }
     return(
         <LinearGradient
-            style={styles.gradient}
+            style={Styles.gradient}
             colors={['#cc2b5e','#753a88']}>
             <TextInput
-                style={styles.searchInput}
+                style={Styles.searchInput}
                 onChangeText={handleInputChange}
                 value={searchInput}
                 placeholder="Enter Movie name"

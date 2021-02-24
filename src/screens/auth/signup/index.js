@@ -1,19 +1,23 @@
 import React,{useState} from "react";
-import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './LoginStyles';
+import Styles from './Styles';
 
-export default Login = ({navigation,toggleSignIn})=>{
+export default SignUp = ({toggleSignIn})=>{
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const isValid = () => {
+    const isValid = () =>{
         const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const passReg = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
         if(!emailReg.test(email)){
             alert("Enter valid Email Address");
+            return false;
+        }
+        if (password.length < 8) {
+            alert("Invalid password format, length should be greater than 8");
             return false;
         }
         if(!passReg.test(password)){
@@ -29,46 +33,51 @@ export default Login = ({navigation,toggleSignIn})=>{
             console.log(e);
         }
     }
-    const logIn = () =>{
+    const signUp = () =>{
         if (isValid()) {
             auth()
-                .signInWithEmailAndPassword(email,password)
+                .createUserWithEmailAndPassword(email,password)
                 .then(() => {
                     storeData(email);
+                    alert(`welcom ${email}`);
                     toggleSignIn();
                 })
                 .catch(error => {
+                    if (error.code === 'auth/email-already-in-use') {
+                        alert('That email address is already in use!');
+                    }
                     if (error.code === 'auth/invalid-email') {
                         alert('That email address is invalid!');
                     }
                 });
         }
     }
+
     return(
         <LinearGradient
-            style={styles.loginView}
+            style={Styles.signUpView}
             colors={['#cc2b5e','#753a88']}>
-            <View style={styles.formContainer}>
-                <Text style={styles.heading}>LOGIN</Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Username/Email: </Text>
+            <View style={Styles.formContainer}>
+                <Text style={Styles.heading}>SignUp</Text>
+                <View style={Styles.inputContainer}>
+                    <Text style={Styles.label}>Email: </Text>
                     <TextInput 
-                        style={styles.input}
+                        style={Styles.input}
                         placeholder="e.g. abc@def.com"
+                        textContentType='emailAddress'
                         onChangeText={text => setEmail(text)}
                         placeholderTextColor="#000"/>
-                    <Text style={styles.label}>Password: </Text>
+                    <Text style={Styles.label}>Password: </Text>
                     <TextInput 
-                        style={styles.input}
+                        style={Styles.input}
                         placeholder="password"
+                        textContentType='password'
                         secureTextEntry={true}
                         onChangeText={text => setPassword(text)}
                         placeholderTextColor="#000"/>
-                    <TouchableOpacity onPress={logIn} style={styles.loginButton}><Text style={{alignSelf:'center',fontSize:25}}>LOGIN</Text></TouchableOpacity>
-                    <Text style={{color:'white'}}>Forget Password</Text>
+                    <TouchableOpacity style={Styles.signUpButton} onPress={signUp}><Text style={{alignSelf:'center',fontSize:25}}>Sign-Up</Text></TouchableOpacity>
                 </View>
             </View>
-            
         </LinearGradient>
     )
 }

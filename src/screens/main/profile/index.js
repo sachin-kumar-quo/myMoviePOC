@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from 'react';
-import {View, Text,TouchableOpacity, StyleSheet} from 'react-native';
+import {Text,TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './ProfileStyles';
-export default Profile = ({ toggleSignIn }) => {
+import Styles from './Styles';
+export default Profile = ({ signOut }) => {
     const [signedUser, setSignedUser] = useState("");
     useEffect(() => {
         getData();
@@ -11,7 +11,6 @@ export default Profile = ({ toggleSignIn }) => {
     const getData = async () => {
         try {
             const value = await AsyncStorage.getItem('@signed_user');
-
             if(value !== null) {
                 setSignedUser(value);
             }
@@ -22,20 +21,21 @@ export default Profile = ({ toggleSignIn }) => {
     const signOutUser = async() => {
         try {
             await AsyncStorage.removeItem('@signed_user');
-            toggleSignIn();
+            alert("ThankYou")
+            signOut();
         } catch (error) {
             alert(error);
         }
     }
     return(
         <LinearGradient
-            style={styles.gradient}
+            style={Styles.gradient}
             colors={['#cc2b5e', '#753a88']}>
-            <Text style={styles.welcomeNote}>
+            <Text style={Styles.welcomeNote}>
                 Welcome {signedUser}
             </Text>
             <TouchableOpacity onPress={signOutUser}>
-                <Text style={styles.signOut}>SignOut</Text>
+                <Text style={Styles.signOut}>SignOut</Text>
             </TouchableOpacity>
         </LinearGradient>
     )

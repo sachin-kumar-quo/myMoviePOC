@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer,DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import MovieProfile from './src/screens/main/MovieProfile';
-import List from './src/screens/main/List'
+import MovieProfile from './src/screens/main/movieprofile';
+import List from './src/screens/main/list'
 import Icon from 'react-native-vector-icons/Ionicons';
 import AuthTab from './src/tabs/AuthTab';
 import MainDrawer from './src/drawers/MainDrawer';

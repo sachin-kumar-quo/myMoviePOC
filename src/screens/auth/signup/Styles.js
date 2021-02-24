@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native'
-export default styles = StyleSheet.create({
-    loginView:{
+import { StyleSheet } from 'react-native';
+export default Styles = StyleSheet.create({
+    signUpView:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
@@ -17,9 +17,9 @@ export default styles = StyleSheet.create({
         fontWeight:'bold',
         alignSelf: 'center',
         color: 'white',
-        paddingVertical: 10
+        paddingVertical:10
     },
-    loginButton:{
+    signUpButton:{
         backgroundColor:'orange',
         margin:4,
         padding:10
@@ -28,8 +28,8 @@ export default styles = StyleSheet.create({
         borderColor:'#ffdedb',
         borderRadius:2,
         borderWidth:1,
-        height:30,
-        marginVertical: 5
+        height:40,
+        marginVertical:5
     },
     label: {
         fontSize: 20,

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native'
-export default styles = StyleSheet.create({
+export default Styles = StyleSheet.create({
     overview: {
         marginTop:20,
         fontSize: 20,

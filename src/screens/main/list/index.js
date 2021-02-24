@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import { Text, FlatList, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import styles from './ListStyles';
-import Card from '../../components/Card'
+import Styles from './Styles';
+import Card from '../../../components/card'
 
 export default List = ({route,navigation}) => {
     const [movies, setMovies] = useState([]);
@@ -40,9 +40,9 @@ export default List = ({route,navigation}) => {
     }
     return (
         <LinearGradient
-            style={styles.gradient}
+            style={Styles.gradient}
             colors={['#cc2b5e','#753a88']}>
-            <Text style={styles.heading}>{route.params.name}</Text>
+            <Text style={Styles.heading}>{route.params.name}</Text>
             <FlatList
                 data={movies}
                 numColumns={2}

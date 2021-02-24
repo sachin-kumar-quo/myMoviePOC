@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react';
-import { Text, ScrollView, StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
+import { Text, ScrollView, View, TouchableOpacity, FlatList } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Card from '../../components/Card';
-import styles from './HomeStyles'
+import Card from '../../../components/card';
+import Styles from './Styles'
 
 export default Home = ({navigation}) =>{
     const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -53,12 +53,12 @@ export default Home = ({navigation}) =>{
     }
     return (
         <LinearGradient
-            style={styles.gradient}
+            style={Styles.gradient}
             colors={['#cc2b5e','#753a88']}>
             <ScrollView >
-                <View style={styles.section}>
-                    <Text style={styles.heading}> Top Rated <Icon name="fire" size={40}/></Text>
-                    <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'Top Rated',section:'top_rated'})}><Text style={styles.seeMore}>See More...</Text></TouchableOpacity>
+                <View style={Styles.section}>
+                    <Text style={Styles.heading}> Top Rated <Icon name="fire" size={40}/></Text>
+                    <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'Top Rated',section:'top_rated'})}><Text style={Styles.seeMore}>See More...</Text></TouchableOpacity>
                 </View>
                 <View>
                     <FlatList
@@ -67,10 +67,10 @@ export default Home = ({navigation}) =>{
                         renderItem={renderListItem}
                         keyExtractor={item => item.id.toString()} />
                 </View>
-                <View style={styles.section}>
+                <View style={Styles.section}>
                     <View>
-                        <Text style={styles.heading}> Popular <Icon name="star-of-david" size={40} /></Text>
-                        <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'Popular',section:'popular'})}><Text style={styles.seeMore}>See More...</Text></TouchableOpacity>
+                        <Text style={Styles.heading}> Popular <Icon name="star-of-david" size={40} /></Text>
+                        <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'Popular',section:'popular'})}><Text style={Styles.seeMore}>See More...</Text></TouchableOpacity>
                     </View>
                     <FlatList
                         horizontal={true}
@@ -78,10 +78,10 @@ export default Home = ({navigation}) =>{
                         renderItem={renderListItem}
                         keyExtractor={item => item.id.toString()} />
                 </View>
-                <View style={styles.section}>
+                <View style={Styles.section}>
                     <View>
-                        <Text style={styles.heading}> UpComing <Icon name="hourglass-start" size={30} /></Text>
-                        <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'UpComing',section:'upcoming'})}><Text style={styles.seeMore}>See More...</Text></TouchableOpacity>
+                        <Text style={Styles.heading}> UpComing <Icon name="hourglass-start" size={30} /></Text>
+                        <TouchableOpacity onPress={()=>navigation.navigate('MovieList',{name:'UpComing',section:'upcoming'})}><Text style={Styles.seeMore}>See More...</Text></TouchableOpacity>
                     </View>
                     <FlatList
                         horizontal={true}

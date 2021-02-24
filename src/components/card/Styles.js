@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
-export default styles = StyleSheet.create({
+export default Styles = StyleSheet.create({
     conatainer: {
         width: windowWidth * .45,
         height: 350,
