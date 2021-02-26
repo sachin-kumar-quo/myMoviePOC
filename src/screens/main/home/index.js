@@ -3,52 +3,55 @@ import {ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Styles from './Styles';
 import CategoryCard from '../../../components/categorycard';
+import {getMovies} from '../../../utils/fetchData/getMovies';
+import {getMoviesUrl} from '../../../utils/fetchData/getUrl';
 
 export default Home = ({navigation}) => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [upComingMovies, setUpComingMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 
   useEffect(() => {
     getTopRatedMovies();
   }, []);
+
   useEffect(() => {
     getPopularMovies();
   }, []);
+
   useEffect(() => {
     getUpComingMovies();
   }, []);
 
+  useEffect(() => {
+    getNowPlayingMovies();
+  }, []);
+
   const getTopRatedMovies = async () => {
-    await fetch(
-      'https://api.themoviedb.org/3/movie/top_rated?api_key=8ca2abb7154c8c81ef7cb403c11eec32&language=en-US&page=1',
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setTopRatedMovies(data.results);
-      })
-      .catch((err) => alert(err));
+    let url = await getMoviesUrl('top_rated', 1);
+    let movies = await getMovies(url);
+    setTopRatedMovies(movies);
   };
+
   const getPopularMovies = async () => {
-    await fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=8ca2abb7154c8c81ef7cb403c11eec32&language=en-US&page=1',
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setPopularMovies(data.results);
-      })
-      .catch((err) => alert(err));
+    let url = await getMoviesUrl('popular', 1);
+    let movies = await getMovies(url);
+    setPopularMovies(movies);
   };
+
   const getUpComingMovies = async () => {
-    await fetch(
-      'https://api.themoviedb.org/3/movie/upcoming?api_key=8ca2abb7154c8c81ef7cb403c11eec32&language=en-US&page=1',
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setUpComingMovies(data.results);
-      })
-      .catch((err) => alert(err));
+    let url = await getMoviesUrl('upcoming', 1);
+    let movies = await getMovies(url);
+    setUpComingMovies(movies);
   };
+
+  const getNowPlayingMovies = async () => {
+    let url = await getMoviesUrl('now_playing', 1);
+    let movies = await getMovies(url);
+    setNowPlayingMovies(movies);
+  };
+
   return (
     <LinearGradient style={Styles.gradient} colors={['#cc2b5e', '#753a88']}>
       <ScrollView>
@@ -72,6 +75,13 @@ export default Home = ({navigation}) => {
           section="upcoming"
           navigation={navigation}
           moviesList={upComingMovies}
+        />
+        <CategoryCard
+          headingText="Now Playing"
+          headingIcon="hourglass-start"
+          section="now_playing"
+          navigation={navigation}
+          moviesList={nowPlayingMovies}
         />
       </ScrollView>
     </LinearGradient>

@@ -5,9 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from './Styles';
 export default Profile = ({ signOut }) => {
     const [signedUser, setSignedUser] = useState("");
+    
     useEffect(() => {
         getData();
     }, [])
+
     const getData = async () => {
         try {
             const value = await AsyncStorage.getItem('@signed_user');
@@ -18,6 +20,7 @@ export default Profile = ({ signOut }) => {
             alert(e);
         }
     }
+
     const signOutUser = async() => {
         try {
             await AsyncStorage.removeItem('@signed_user');
@@ -27,6 +30,7 @@ export default Profile = ({ signOut }) => {
             alert(error);
         }
     }
+
     return(
         <LinearGradient
             style={Styles.gradient}

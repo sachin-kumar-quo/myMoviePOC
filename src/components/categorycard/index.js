@@ -37,6 +37,7 @@ export default CategoryCard = ({
             navigation.navigate('MovieList', {
               name: headingText,
               section: section,
+              headingIcon: headingIcon,
             })
           }>
           <Text style={Styles.seeMore}>See More...</Text>
