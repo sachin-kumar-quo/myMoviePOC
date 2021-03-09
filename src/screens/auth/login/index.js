@@ -8,40 +8,15 @@ import {
   Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from './Styles';
-import ValidateInput from '../../../utils/validation/ValidateInput';
+import {useDispatch} from 'react-redux';
+import {signIn} from '../../../store/actions';
 
 export default Login = ({navigation, toggleSignIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem('@signed_user', value);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const logIn = () => {
-    if (ValidateInput(email, password)) {
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          storeData(email);
-          alert(`welcome ${email}`);
-          toggleSignIn();
-        })
-        .catch((error) => {
-          if (error.code === 'auth/invalid-email') {
-            alert('That email address is invalid!');
-          }
-        });
-    }
-  };
-  
   return (
     <KeyboardAvoidingView
       style={Styles.container}
@@ -65,7 +40,9 @@ export default Login = ({navigation, toggleSignIn}) => {
               onChangeText={(text) => setPassword(text)}
               placeholderTextColor="#000"
             />
-            <TouchableOpacity onPress={logIn} style={Styles.loginButton}>
+            <TouchableOpacity
+              onPress={() => dispatch(signIn(email, password))}
+              style={Styles.loginButton}>
               <Text style={{alignSelf: 'center', fontSize: 25}}>LOGIN</Text>
             </TouchableOpacity>
             <Text style={{color: 'white'}}>Forget Password</Text>

@@ -9,33 +9,35 @@ import List from './src/screens/main/list';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AuthTab from './src/tabs/AuthTab';
 import MainDrawer from './src/drawers/MainDrawer';
+import {useSelector} from 'react-redux';
 
 const Stack = createStackNavigator();
 
 export default App = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+  const isSignedIn = useSelector((state) => state.isSignedIn);
   useEffect(() => {
-    isUserSignedIn();
+    // isUserSignedIn();
+    console.log(isSignedIn);
   }, [isSignedIn]);
 
-  const isUserSignedIn = async () => {
-    let value = await AsyncStorage.getItem('@signed_user');
-    if (value !== null) {
-      setIsSignedIn(true);
-    } else {
-      setIsSignedIn(false);
-    }
-  };
+  // const isUserSignedIn = async () => {
+  //   let value = await AsyncStorage.getItem('@signed_user');
+  //   if (value !== null) {
+  //     setIsSignedIn(true);
+  //   } else {
+  //     setIsSignedIn(false);
+  //   }
+  // };
 
-  const toggleSignIn = () => {
-    if (isSignedIn) {
-      auth()
-        .signOut()
-        .then(() => console.log('User signed out!'));
-    }
-    setIsSignedIn(!isSignedIn);
-  };
+  // const toggleSignIn = () => {
+  //   if (isSignedIn) {
+  //     auth()
+  //       .signOut()
+  //       .then(() => console.log('User signed out!'));
+  //   }
+  //   setIsSignedIn(!isSignedIn);
+  // };
 
   return (
     <NavigationContainer>
@@ -43,14 +45,14 @@ export default App = () => {
         {!isSignedIn ? (
           <Stack.Screen
             name="Auth"
-            children={() => <AuthTab toggleSignIn={toggleSignIn} />}
+            children={() => <AuthTab />}
             options={{headerShown: false}}
           />
         ) : (
           <>
             <Stack.Screen
               name="Main"
-              children={() => <MainDrawer toggleSignIn={toggleSignIn} />}
+              children={() => <MainDrawer />}
               options={({navigation}) => ({
                 headerLeft: () => (
                   <TouchableOpacity

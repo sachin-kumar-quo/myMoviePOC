@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
-export default AuthTab = ({toggleSignIn}) => {
+export default AuthTab = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -16,7 +16,7 @@ export default AuthTab = ({toggleSignIn}) => {
       }}>
       <Tab.Screen
         name="Login"
-        children={() => <Login toggleSignIn={toggleSignIn} />}
+        children={() => <Login />}
         options={{
           tabBarIcon: () => (
             <Icon name="arrow-forward-circle-outline" size={25} color="white" />
@@ -25,7 +25,7 @@ export default AuthTab = ({toggleSignIn}) => {
       />
       <Tab.Screen
         name="SignUp"
-        children={() => <SignUp toggleSignIn={toggleSignIn} />}
+        children={() => <SignUp />}
         options={{
           tabBarIcon: () => <Icon name="add-circle" size={25} color="white" />,
         }}

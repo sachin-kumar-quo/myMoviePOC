@@ -4,19 +4,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import Styles from './Styles';
 import {getMovie} from '../../../utils/fetchData/getMovies';
 import {getImgUrl, getMovieUrl} from '../../../utils/fetchData/getUrl';
+import {useSelector, useDispatch} from 'react-redux';
+import {getMovieProfile} from '../../../store/actions';
 
 export default MovieProfile = ({route, navigation}) => {
-  const [movie, setMovie] = useState('');
+  const movie = useSelector((state) => state.loadedMovie);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getMovieProfile();
+    dispatch(getMovieProfile(route.params.movieId));
   }, []);
-
-  const getMovieProfile = async () => {
-    let url = await getMovieUrl(route.params.movieId);
-    let movieProfile = await getMovie(url);
-    setMovie(movieProfile);
-  };
 
   return (
     <LinearGradient style={Styles.gradient} colors={['#cc2b5e', '#753a88']}>

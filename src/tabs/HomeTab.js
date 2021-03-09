@@ -8,7 +8,7 @@ import Profile from '../screens/main/profile';
 
 const Tab = createBottomTabNavigator();
 
-export default HomeTab = ({toggleSignIn}) => {
+export default HomeTab = () => {
   return (
     <Tab.Navigator
       initialRouteName="Profile"
@@ -32,7 +32,7 @@ export default HomeTab = ({toggleSignIn}) => {
       />
       <Tab.Screen
         name="Profile"
-        children={() => <Profile signOut={toggleSignIn} />}
+        children={() => <Profile />}
         options={{
           tabBarIcon: () => <Icon name="ios-person" size={25} color="white" />,
         }}

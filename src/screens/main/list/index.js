@@ -6,21 +6,23 @@ import Card from '../../../components/card';
 import {getMovies} from '../../../utils/fetchData/getMovies';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {getMoviesUrl} from '../../../utils/fetchData/getUrl';
+import {useSelector, useDispatch} from 'react-redux';
+import * as loadMovies from '../../../store/actions';
 
 export default List = ({route, navigation}) => {
-  const [movies, setMovies] = useState([]);
-  const [offset, setOffset] = useState(1);
-
-  useEffect(() => {
-    getListMovies();
-  }, []);
-
-  const getListMovies = async () => {
-    let url = await getMoviesUrl(route.params.section, offset);
-    let movieList = await getMovies(url);
-    setMovies([...movies, ...movieList]);
-    setOffset(offset + 1);
-  };
+  const movies = useSelector((state) => {
+    switch (route.params.section) {
+      case 'popular':
+        return state.popularMovies;
+      case 'top_rated':
+        return state.topRatedMovies;
+      case 'upcoming':
+        return state.upComingMovies;
+      case 'now_playing':
+        return state.nowPlayingMovies;
+    }
+  });
+  const dispatch = useDispatch();
 
   const renderListItem = (movie) => {
     return (
@@ -48,7 +50,18 @@ export default List = ({route, navigation}) => {
         data={movies}
         numColumns={2}
         renderItem={renderListItem}
-        onEndReached={getListMovies}
+        onEndReached={() => {
+          switch (route.params.section) {
+            case 'popular':
+              return dispatch(loadMovies.getPopularMovies());
+            case 'top_rated':
+              return dispatch(loadMovies.getTopRatedMovies());
+            case 'upcoming':
+              return dispatch(loadMovies.getUpComingMovies());
+            case 'now_playing':
+              return dispatch(loadMovies.getNowPlayingMovies());
+          }
+        }}
         onEndReachedThreshold={0.1}
         keyExtractor={(item) => item.id}
         extraData={movies}
